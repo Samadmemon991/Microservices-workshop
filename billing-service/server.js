@@ -20,7 +20,7 @@ app.get("/billing", (req, res) => {
 
 app.post("/billing", (req, res) => {
     console.log(req.body);
-    res.send("POST BILLING");
+    res.send({ "msg": "POST BILLING" });
 });
 
 app.put("/billing", (req, res) => {

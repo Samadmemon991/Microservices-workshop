@@ -1,7 +1,7 @@
 // imports
 const express = require("express");
 const morgan = require("morgan");
-
+const fetch = require("node-fetch");
 // init express app
 const app = express();
 
