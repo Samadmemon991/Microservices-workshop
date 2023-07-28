@@ -19,8 +19,7 @@ app.get("/shipping", (req, res) => {
 });
 
 app.post("/shipping", (req, res) => {
-    console.log(req.body);
-    const url = 'http://localhost:5003/billing/';
+    const url = 'http://billing-service:5003/billing/';
 
     const requestOptions = {
         method: 'POST',
@@ -33,7 +32,7 @@ app.post("/shipping", (req, res) => {
     fetch(url, requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log("Billing service called");
         })
         .catch(error => {
             console.error('Error:', error);
