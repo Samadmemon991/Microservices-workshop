@@ -1,20 +1,40 @@
 version: "3"
 services:
+  rabbitmq-service:
+    image: "rabbitmq:management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  data-service:
+    build: ./data-service
+    depends_on:
+      - rabbitmq-service
+  webhook-service:
+    build: ./webhook-service
+    depends_on:
+      - rabbitmq-service
   inventory-service:
     build: ./inventory-service
     ports:
       - "5002:5002"
+    depends_on:
+      - rabbitmq-service
   shipping-service:
     build: ./shipping-service
     ports:
       - "5004:5004"
     depends_on:
+      - rabbitmq-service
       - billing-service
   users-service:
     build: ./users-service
     ports:
       - "5006:5006"
+    depends_on:
+      - rabbitmq-service
   billing-service:
     build: ./billing-service
     ports:
       - "5003:5003"
+    depends_on:
+      - rabbitmq-service
